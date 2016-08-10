@@ -1,8 +1,13 @@
-var app = require('app');  // アプリケーション作成用モジュールをロード
-var BrowserWindow = require('browser-window'); 
+'use strict';
+//const Menu = electron.Menu;
+const electron = require('electron');
+const app = electron.app;
+
+const BrowserWindow = electron.BrowserWindow;
 //  クラッシュレポート
-require('crash-reporter').start();
-var mainWindow = null;
+//electron.crashReporter.start();
+let mainWindow;
+
 // 全てのウィンドウが閉じたらアプリケーションを終了します。
 app.on('window-all-closed', function() {
     app.quit();
@@ -12,7 +17,7 @@ app.on('ready', function() {
   // メインウィンドウを作成します。
   mainWindow = new BrowserWindow({width: 1000, height: 900});
   // メインウィンドウに表示するURLを指定します。
-  mainWindow.loadUrl('file://' + __dirname + '/index.html');
+  mainWindow.loadURL('file://' + __dirname + '/index.html');
   // メインウィンドウが閉じられたときの処理
   mainWindow.on('closed', function() {
     mainWindow = null;
